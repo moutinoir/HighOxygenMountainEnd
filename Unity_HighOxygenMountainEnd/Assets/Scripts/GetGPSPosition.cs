@@ -13,12 +13,15 @@ public class GetGPSPosition : MonoBehaviour
     private float originalLongitude;
     private float originalAltitude;
 
-    private float currentLatitude;
-    private float currentLongitude;
-    private float currentAltitude;
+    public float currentLatitude;
+    public float currentLongitude;
+    public float currentAltitude;
+    public bool hasLastData;
+    public LocationInfo lastData;
 
-    void Start()
+    void Awake()
     {
+        hasLastData = false;
         //start GetCoordinate() function 
         StartCoroutine("GetCoordinates");
         //initialize target and original position
@@ -75,10 +78,12 @@ public class GetGPSPosition : MonoBehaviour
                     setOriginalValues = false;
                 }
 
-                //overwrite current lat and lon everytime
+                // overwrite current lat and long everytime
                 currentLatitude = Input.location.lastData.latitude;
                 currentLongitude = Input.location.lastData.longitude;
                 currentAltitude = Input.location.lastData.altitude;
+                lastData = Input.location.lastData;
+                hasLastData = true;
 
                 infoText.text = currentLatitude + ", " + currentLongitude + ", " + currentAltitude;
             }
