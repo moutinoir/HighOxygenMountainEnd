@@ -6,23 +6,21 @@ using UnityEngine.UI;
 public class GeoPositionInfo : MonoBehaviour
 {
     public Text northRefOffsetInfo;
-    public Text geolocalizationInfo;
     public Text calculatedLocalizationInfo;
 
     private Vector3 northRefOffset;
-    public GPSPositionUtils.SLocationInfo geolocalization;
     public GPSPositionUtils.SLocationInfo calculatedLocalization;
     public bool useCalculatedLocalization;
     private bool isInitialized;
 
     private PlayerPosition playerPosition;
 
-    private void Start()
-    {
-        StartCoroutine(Initialize());
-    }
+    //private void Start()
+    //{
+    //    StartCoroutine(Initialize());
+    //}
 
-    IEnumerator Initialize()
+    public IEnumerator Initialize()
     {
         GetPlayerPosition();
         while(!isInitialized)
@@ -72,7 +70,7 @@ public class GeoPositionInfo : MonoBehaviour
         GetPlayerPosition();
         if (playerPosition)
         {
-            Vector3 northRefOffset = GPSPositionUtils.GetPositionDiff(new GPSPositionUtils.SLocationInfo(playerPosition.gpsPosition.lastData),
+            Vector3 northRefOffset = GPSPositionUtils.GetPositionDiff(playerPosition.gpsPosition.lastData,
                 calculatedLocalization);
             Vector3 offset = GPSPositionUtils.NorthRefOffsetToWorldOffset(northRefOffset);
 

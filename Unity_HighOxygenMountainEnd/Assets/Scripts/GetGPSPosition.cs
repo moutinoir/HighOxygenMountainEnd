@@ -7,6 +7,11 @@ public class GetGPSPosition : MonoBehaviour
 {
     public Text infoText;
 
+    public bool forcePosition;
+    public float forcedLatitude;
+    public float forcedLongitude;
+    public float forcedAltitude;
+
     private Vector3 originalPosition;
     private bool setOriginalValues = true;
     private float originalLatitude;
@@ -17,7 +22,7 @@ public class GetGPSPosition : MonoBehaviour
     public float currentLongitude;
     public float currentAltitude;
     public bool hasLastData;
-    public LocationInfo lastData;
+    public GPSPositionUtils.SLocationInfo lastData;
 
     void Awake()
     {
@@ -30,6 +35,24 @@ public class GetGPSPosition : MonoBehaviour
 
     IEnumerator GetCoordinates()
     {
+        if(forcePosition)
+        {
+            hasLastData = true;
+
+            originalLatitude = forcedLatitude;
+            originalLongitude = forcedLongitude;
+            originalAltitude = forcedAltitude;
+
+            // overwrite current lat and long everytime
+            currentLatitude = forcedLatitude;
+            currentLongitude = forcedLongitude;
+            currentAltitude = forcedAltitude;
+
+            lastData.altitude = forcedAltitude;
+            lastData.longitude = forcedLongitude;
+            lastData.latitude = forcedLatitude;
+        }
+
         //while true so this function keeps running once started.
         while (true)
         {
@@ -82,7 +105,11 @@ public class GetGPSPosition : MonoBehaviour
                 currentLatitude = Input.location.lastData.latitude;
                 currentLongitude = Input.location.lastData.longitude;
                 currentAltitude = Input.location.lastData.altitude;
-                lastData = Input.location.lastData;
+
+                lastData.altitude = currentAltitude;
+                lastData.longitude = currentLongitude;
+                lastData.latitude = currentLatitude;
+
                 hasLastData = true;
 
                 infoText.text = currentLatitude + ", " + currentLongitude + ", " + currentAltitude;

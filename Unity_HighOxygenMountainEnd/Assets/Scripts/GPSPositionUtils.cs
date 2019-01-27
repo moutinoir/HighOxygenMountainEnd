@@ -6,7 +6,14 @@ public class GPSPositionUtils : MonoBehaviour
 {
     private static float earthRadius = 6371000;
     private static Transform north;
-    
+
+    public Transform utilNorth;
+
+    private void Awake()
+    {
+        north = utilNorth;
+    }
+
     [System.Serializable]
     public struct SLocationInfo
     {
@@ -56,7 +63,7 @@ public class GPSPositionUtils : MonoBehaviour
     /// <param name="offset">(longitudeDistance, altitudeDistance, latitudeDistance)
     /// (eastDirection, verticalDirection, northDirection)</param>
     /// <returns></returns>
-    public static SLocationInfo GetLocalization(LocationInfo locationRef, Vector3 offset)
+    public static SLocationInfo GetLocalization(SLocationInfo locationRef, Vector3 offset)
     {
         float altitudeDistance = offset.y;
         float altitude = locationRef.altitude + altitudeDistance;
