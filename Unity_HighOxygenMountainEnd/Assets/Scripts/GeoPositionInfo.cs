@@ -67,43 +67,43 @@ public class GeoPositionInfo : MonoBehaviour
 
     void SetPosition()
     {
-        PlayerPosition.debug.text += "set position \n";
+        //PlayerPosition.debug.text += "set position \n";
         GetPlayerPosition();
         if (playerPosition)
         {
             Vector3 northRefOffset = GPSPositionUtils.GetPositionDiff(playerPosition.gpsPosition.lastData,
                 calculatedLocalization);
             Vector3 offset = GPSPositionUtils.NorthRefOffsetToWorldOffset(northRefOffset);
-            PlayerPosition.debug.text += "current position " + transform.position + "\n";
+            //PlayerPosition.debug.text += "current position " + transform.position + "\n";
             transform.position = offset;
-            PlayerPosition.debug.text += "current position " + transform.position + "\n";
+            //PlayerPosition.debug.text += "current position " + transform.position + "\n";
         } 
     }
 
     void CalculateLocalization()
     {
-        PlayerPosition.debug.text += "calculate localization \n";
+        //PlayerPosition.debug.text += "calculate localization \n";
         GetPlayerPosition();
         if (playerPosition)
         {
             Vector3 northRefOffset = GPSPositionUtils.WorldOffsetToNorthRefOffset(transform.position - playerPosition.transform.position);
-            PlayerPosition.debug.text += "northRefOffset " + northRefOffset + "\n";
+            //PlayerPosition.debug.text += "northRefOffset " + northRefOffset + "\n";
             calculatedLocalization = GPSPositionUtils.GetLocalization(playerPosition.gpsPosition.lastData, northRefOffset);
-            PlayerPosition.debug.text += "calculatedLocalization " + calculatedLocalization.GetInfo() + "\n";
+            //PlayerPosition.debug.text += "calculatedLocalization " + calculatedLocalization.GetInfo() + "\n";
         }
     }
 
-    //private void Update()
-    //{
-    //    if (useCalculatedLocalization)
-    //    {
-    //        SetPosition();
-    //        UpdateInfo();
-    //    }
-    //    else
-    //    {
-    //        CalculateLocalization();
-    //        UpdateInfo();
-    //    }
-    //}
+    private void Update()
+    {
+        if (useCalculatedLocalization)
+        {
+            SetPosition();
+            UpdateInfo();
+        }
+        else
+        {
+            CalculateLocalization();
+            UpdateInfo();
+        }
+    }
 }
