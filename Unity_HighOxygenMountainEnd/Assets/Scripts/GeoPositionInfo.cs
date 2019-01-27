@@ -1,12 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class GeoPositionInfo : MonoBehaviour
 {
-    public Text northRefOffsetInfo;
-    public Text calculatedLocalizationInfo;
+    public TextMesh northRefOffsetInfo;
+    public TextMesh calculatedLocalizationInfo;
 
     private Vector3 northRefOffset;
     public GPSPositionUtils.SLocationInfo calculatedLocalization;

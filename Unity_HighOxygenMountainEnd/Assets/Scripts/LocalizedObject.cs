@@ -20,6 +20,10 @@ public class LocalizedObject : MonoBehaviour
             geoPositionInfo.name = localizedObjectInfo.name;
             PlayerPosition.debug.text += "create object " + localizedObjectInfo.name;
         }
+        else
+        {
+            geoPositionInfo.name = "Ground Plane Stage";
+        }
         StartCoroutine(geoPositionInfo.Initialize());
     }
 }
