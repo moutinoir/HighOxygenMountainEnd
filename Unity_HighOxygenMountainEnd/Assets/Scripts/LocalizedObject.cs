@@ -18,10 +18,14 @@ public class LocalizedObject : MonoBehaviour
             geoPositionInfo.calculatedLocalization.longitude = localizedObjectInfo.localization.longitude;
             geoPositionInfo.useCalculatedLocalization = true;
             geoPositionInfo.name = localizedObjectInfo.name;
-            PlayerPosition.debug.text += "create object " + localizedObjectInfo.name;
+            PlayerPosition.debug.text += "create object " + localizedObjectInfo.name + "\n";
         }
         else
         {
+            geoPositionInfo.calculatedLocalization.altitude = 0;
+            geoPositionInfo.calculatedLocalization.latitude = 0;
+            geoPositionInfo.calculatedLocalization.longitude = 0;
+            geoPositionInfo.useCalculatedLocalization = false;
             geoPositionInfo.name = "Ground Plane Stage";
         }
         StartCoroutine(geoPositionInfo.Initialize());
