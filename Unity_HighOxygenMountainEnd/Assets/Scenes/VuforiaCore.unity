@@ -2105,7 +2105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa6db5a77c679004b8d01ce91cb0e9da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gpsPosition: {fileID: 0}
+  gpsPosition: {fileID: 861205248}
 --- !u!1 &887129854
 GameObject:
   m_ObjectHideFlags: 0
