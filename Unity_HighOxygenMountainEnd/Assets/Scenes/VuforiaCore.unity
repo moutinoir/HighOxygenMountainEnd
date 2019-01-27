@@ -876,7 +876,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   infoText: {fileID: 257713165}
-  forcePosition: 1
+  forcePosition: 0
   forcedLatitude: 52.500046
   forcedLongitude: 13.445718
   forcedAltitude: 31.57279
