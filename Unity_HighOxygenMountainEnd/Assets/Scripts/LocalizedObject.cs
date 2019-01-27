@@ -18,6 +18,7 @@ public class LocalizedObject : MonoBehaviour
             geoPositionInfo.calculatedLocalization.longitude = localizedObjectInfo.localization.longitude;
             geoPositionInfo.useCalculatedLocalization = true;
             geoPositionInfo.name = localizedObjectInfo.name;
+            PlayerPosition.debug.text += "create object " + localizedObjectInfo.name;
         }
         StartCoroutine(geoPositionInfo.Initialize());
     }
